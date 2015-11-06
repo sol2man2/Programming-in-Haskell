@@ -9,10 +9,7 @@ module Lab03 where
 -- ===================================
 
 evens :: [Integer] -> [Integer]
-evens [] = []
-evens (x:xs)
-  | even x = x : evens xs
-  | otherwise = evens xs
+evens xs = [x | x <- xs, even x]
 
 -- ===================================
 -- Ex. 3 - 4 
@@ -21,8 +18,7 @@ evens (x:xs)
 -- complete the following line with the correct type signature for this function
 -- squares :: ... 
 squares :: Integer -> [Integer]
-squares 0 = []
-squares n = squares (n-1) ++  [n*n]
+squares n = [x*x| x <- [1..n]]
 
 sumSquares :: Integer -> Integer
 sumSquares n = sum (squares n)
@@ -34,7 +30,7 @@ sumSquares n = sum (squares n)
 -- complete the following line with the correct type signature for this function
 -- squares' :: ...
 squares' :: Integer -> Integer -> [Integer]
-squares' m n = drop (fromInteger n) $ squares (m+n)
+squares' m n = [x*x| x <- [n..m+n]
 
 sumSquares' :: Integer -> Integer
 sumSquares' x = sum . uncurry squares' $ (x, x)
